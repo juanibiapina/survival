@@ -36,8 +36,4 @@ if mobs.custom_spawn_monster then
 end
 
 
--- Lucky Blocks
-dofile(path .. "lucky_block.lua")
-
-
 print (S("[MOD] Mobs Redo Monsters loaded"))
