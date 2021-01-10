@@ -12,9 +12,9 @@ beds.spawn = {}
 beds.get_translator = S
 
 beds.formspec = "size[8,11;true]" ..
-	"no_prepend[]" ..
-	"bgcolor[#080808BB;true]" ..
-	"button_exit[2,10;4,0.75;leave;" .. esc(S("Leave Bed")) .. "]"
+  "no_prepend[]" ..
+  "bgcolor[#080808BB;true]" ..
+  "button_exit[2,10;4,0.75;leave;" .. esc(S("Leave Bed")) .. "]"
 
 local modpath = minetest.get_modpath("beds")
 
