@@ -1,5 +1,5 @@
 
-local S = mobs.intllib
+local S = mobs.S
 
 
 -- Dirt Monster by PilzAdam

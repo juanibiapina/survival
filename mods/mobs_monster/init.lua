@@ -1,14 +1,12 @@
+-- Load support for MT game translation.
+local S = minetest.get_translator("mobs_monster")
 
--- Load support for intllib.
-local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
-
-local S = minetest.get_translator and minetest.get_translator("mobs_monster") or
-    dofile(path .. "intllib.lua")
-
-mobs.intllib = S
+mobs.S = S
 
 
 -- Monsters
+local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+
 dofile(path .. "dirt_monster.lua") -- PilzAdam
 dofile(path .. "dungeon_master.lua")
 dofile(path .. "oerkki.lua")

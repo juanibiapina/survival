@@ -1,7 +1,5 @@
--- Load support for intllib.
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S = minetest.get_translator and minetest.get_translator("mobs_redo") or
-    dofile(MP .. "/intllib.lua")
+-- Load support for MT game translation.
+local S = minetest.get_translator("mobs_redo")
 
 -- CMI support check
 local use_cmi = minetest.global_exists("cmi")
@@ -9,7 +7,7 @@ local use_cmi = minetest.global_exists("cmi")
 mobs = {
   mod = "redo",
   version = "20210107",
-  intllib = S,
+  S = S,
   invis = minetest.global_exists("invisibility") and invisibility or {}
 }
 
