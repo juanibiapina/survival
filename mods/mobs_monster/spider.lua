@@ -178,7 +178,6 @@ mobs:register_mob("mobs_monster:spider", {
 })
 
 
-if not mobs.custom_spawn_monster then
 -- above ground spawn
 mobs:spawn({
 	name = "mobs_monster:spider",
@@ -205,7 +204,6 @@ mobs:spawn({
 	min_height = -31000,
 	max_height = -40,
 })
-end
 
 
 mobs:register_egg("mobs_monster:spider", S("Spider"), "mobs_cobweb.png", 1)

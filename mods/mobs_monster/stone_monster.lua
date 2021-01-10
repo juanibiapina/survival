@@ -62,7 +62,6 @@ mobs:register_mob("mobs_monster:stone_monster", {
 })
 
 
-if not mobs.custom_spawn_monster then
 mobs:spawn({
 	name = "mobs_monster:stone_monster",
 	nodes = {"default:stone", "default:desert_stone", "default:sandstone"},
@@ -70,7 +69,6 @@ mobs:spawn({
 	chance = 7000,
 	max_height = 0,
 })
-end
 
 
 mobs:register_egg("mobs_monster:stone_monster", S("Stone Monster"), "default_stone.png", 1)
