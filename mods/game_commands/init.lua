@@ -13,15 +13,7 @@ minetest.register_chatcommand("killme", {
         player:set_hp(0)
         return true
       else
-        for _, callback in pairs(minetest.registered_on_respawnplayers) do
-          if callback(player) then
-            return true
-          end
-        end
-
-        -- There doesn't seem to be a way to get a default spawn pos
-        -- from the lua API
-        return false, S("No static_spawnpoint defined")
+        return false, S("Damage is not enabled")
       end
     else
       -- Show error message if used when not logged in, eg: from IRC mod
