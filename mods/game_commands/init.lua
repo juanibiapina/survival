@@ -29,3 +29,15 @@ minetest.register_chatcommand("killme", {
 		end
 	end
 })
+
+minetest.register_chatcommand("biome", {
+  description = S("Check current biome"),
+  func = function(name)
+    local player = minetest.get_player_by_name(name)
+    local pos = player:get_pos()
+    local biome_data = minetest.get_biome_data(pos)
+    local biome_name = minetest.get_biome_name(biome_data.biome)
+
+    return true, biome_name
+  end
+})
