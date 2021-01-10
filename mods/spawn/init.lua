@@ -1,11 +1,10 @@
 -- spawn/init.lua
 
--- Disable by mapgen, setting or if 'static_spawnpoint' is set
+-- Disable by mapgen or setting
 --------------------------------------------------------------
 
 local mg_name = minetest.get_mapgen_setting("mg_name")
 if mg_name == "v6" or mg_name == "singlenode" or
-    minetest.settings:get("static_spawnpoint") or
     minetest.settings:get_bool("engine_spawn") then
   return
 end
