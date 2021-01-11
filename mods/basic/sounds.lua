@@ -3,18 +3,18 @@ function basic.node_sound_defaults(table)
   table.footstep = table.footstep or
       {name = "", gain = 1.0}
   table.dug = table.dug or
-      {name = "default_dug_node", gain = 0.25}
+      {name = "basic_dug_node", gain = 0.25}
   table.place = table.place or
-      {name = "default_place_node_hard", gain = 1.0}
+      {name = "basic_place_node_hard", gain = 1.0}
   return table
 end
 
 function basic.node_sound_stone_defaults(table)
   table = table or {}
   table.footstep = table.footstep or
-      {name = "default_hard_footstep", gain = 0.3}
+      {name = "basic_hard_footstep", gain = 0.3}
   table.dug = table.dug or
-      {name = "default_hard_footstep", gain = 1.0}
+      {name = "basic_hard_footstep", gain = 1.0}
   basic.node_sound_defaults(table)
   return table
 end
@@ -22,7 +22,7 @@ end
 function basic.node_sound_water_defaults(table)
   table = table or {}
   table.footstep = table.footstep or
-      {name = "default_water_footstep", gain = 0.2}
+      {name = "basic_water_footstep", gain = 0.2}
   basic.node_sound_defaults(table)
   return table
 end
@@ -30,11 +30,11 @@ end
 function basic.node_sound_dirt_defaults(table)
   table = table or {}
   table.footstep = table.footstep or
-      {name = "default_dirt_footstep", gain = 0.4}
+      {name = "basic_dirt_footstep", gain = 0.4}
   table.dug = table.dug or
-      {name = "default_dirt_footstep", gain = 1.0}
+      {name = "basic_dirt_footstep", gain = 1.0}
   table.place = table.place or
-      {name = "default_place_node", gain = 1.0}
+      {name = "basic_place_node", gain = 1.0}
   basic.node_sound_defaults(table)
   return table
 end
@@ -42,11 +42,11 @@ end
 function basic.node_sound_sand_defaults(table)
   table = table or {}
   table.footstep = table.footstep or
-      {name = "default_sand_footstep", gain = 0.12}
+      {name = "basic_sand_footstep", gain = 0.12}
   table.dug = table.dug or
-      {name = "default_sand_footstep", gain = 0.24}
+      {name = "basic_sand_footstep", gain = 0.24}
   table.place = table.place or
-      {name = "default_place_node", gain = 1.0}
+      {name = "basic_place_node", gain = 1.0}
   basic.node_sound_defaults(table)
   return table
 end
