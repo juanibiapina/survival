@@ -3,6 +3,12 @@ local S = minetest.get_translator("mobs")
 mobs = {}
 mobs.S = S
 
+local calc_distance = function(a, b)
+  local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
+
+  return math.sqrt(x * x + y * y + z * z)
+end
+
 local path = minetest.get_modpath("mobs")
 
 local BaseMob = {
@@ -13,6 +19,16 @@ local BaseMob = {
     end
 
     if self.state == "attack" then
+      local selfpos = self.object:get_pos()
+      local targetpos = self.target:get_pos()
+      local distance = calc_distance(targetpos, selfpos)
+
+      if distance > self.view_range then
+        self.state = "stand"
+
+        return
+      end
+
       self.current_backswing = self.current_backswing - dtime;
 
       if self.current_backswing <= 0 then
@@ -30,7 +46,7 @@ local BaseMob = {
     local pos = self.object:get_pos()
     if not pos then return end
 
-    local objs = minetest.get_objects_inside_radius(pos, 5)
+    local objs = minetest.get_objects_inside_radius(pos, self.view_range)
 
     for n = 1, #objs do
       if objs[n]:is_player() then
@@ -56,6 +72,7 @@ local Zombie = {
   },
 
   state = "stand",
+  view_range = 5,
 }
 setmetatable(Zombie, { __index = BaseMob })
 

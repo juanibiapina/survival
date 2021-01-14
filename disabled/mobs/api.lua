@@ -2496,10 +2496,8 @@ function mob_class:do_states(dtime)
 
       -- rnd: new movement direction
       if self.path.following and self.path.way and self.attack_type ~= "dogshoot" then
-
         -- no paths longer than 50
-        if #self.path.way > 50
-        or dist < self.reach then
+        if #self.path.way > 50 or dist < self.reach then
           self.path.following = false
           return
         end
