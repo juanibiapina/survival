@@ -12,6 +12,7 @@ minetest.register_on_joinplayer(function(player)
     privs.fast = true
     privs.noclip = true
     privs.home = true
+    privs.give = true
     minetest.set_player_privs(player:get_player_name(), privs)
 end)
 

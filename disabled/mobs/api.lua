@@ -2323,7 +2323,7 @@ function mob_class:do_states(dtime)
     local dist = p and get_distance(p, s) or 500
 
     -- stop attacking if player out of range or invisible
-    if dist > self.view_range or not self.attack or not self.attack:get_pos() or self.attack:get_hp() <= 0 or (self.attack:is_player() and mobs.invis[ self.attack:get_player_name() ]) then
+    if dist > self.view_range or self.attack:get_hp() <= 0 or (self.attack:is_player() and mobs.invis[ self.attack:get_player_name() ]) then
 
       --print(" ** stop attacking **", dist, self.view_range)
 
@@ -2449,9 +2449,7 @@ function mob_class:do_states(dtime)
 
     elseif self.attack_type == "dogfight" or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 2) or (self.attack_type == "dogshoot" and dist <= self.reach and self:dogswitch() == 0) then
 
-      if self.fly
-      and dist > self.reach then
-
+      if self.fly and dist > self.reach then
         local p1 = s
         local me_y = floor(p1.y)
         local p2 = p
@@ -2497,9 +2495,7 @@ function mob_class:do_states(dtime)
       end
 
       -- rnd: new movement direction
-      if self.path.following
-      and self.path.way
-      and self.attack_type ~= "dogshoot" then
+      if self.path.following and self.path.way and self.attack_type ~= "dogshoot" then
 
         -- no paths longer than 50
         if #self.path.way > 50
@@ -2528,20 +2524,15 @@ function mob_class:do_states(dtime)
 
       -- move towards enemy if beyond mob reach
       if dist > self.reach then
-
         -- path finding by rnd
-        if self.pathfinding -- only if mob has pathfinding enabled
-        and enable_pathfinding then
-
+        if self.pathfinding and enable_pathfinding then
           self:smart_mobs(s, p, dist, dtime)
         end
 
         if self.at_cliff then
-
           self:set_velocity(0)
           self:set_animation("stand")
         else
-
           if self.path.stuck then
             self:set_velocity(self.walk_velocity)
           else
@@ -2554,9 +2545,7 @@ function mob_class:do_states(dtime)
             self:set_animation("walk")
           end
         end
-
       else -- rnd: if inside reach range
-
         self.path.stuck = false
         self.path.stuck_timer = 0
         self.path.following = false -- not stuck anymore
@@ -2566,8 +2555,7 @@ function mob_class:do_states(dtime)
         if self.timer > 1 then
 
           -- no custom attack or custom attack returns true to continue
-          if not self.custom_attack
-          or self:custom_attack(self, p) == true then
+          if not self.custom_attack or self:custom_attack(self, p) == true then
 
             self.timer = 0
             self:set_animation("punch")
@@ -2610,9 +2598,7 @@ function mob_class:do_states(dtime)
 
       self:set_velocity(0)
 
-      if self.shoot_interval
-      and self.timer > self.shoot_interval
-      and random(100) <= 60 then
+      if self.shoot_interval and self.timer > self.shoot_interval and random(100) <= 60 then
 
         self.timer = 0
         self:set_animation("shoot")

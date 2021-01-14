@@ -13,6 +13,16 @@ local BaseMob = {
     end
 
     if self.state == "attack" then
+      self.current_backswing = self.current_backswing - dtime;
+
+      if self.current_backswing <= 0 then
+        self.target:punch(self.object, 1.0, {
+            full_punch_interval = 1.0, -- TODO: what is this?
+            damage_groups = {fleshy = 1} -- TODO: what is this?
+          }, nil)
+
+        self.current_backswing = 1; --reset backswing
+      end
     end
   end,
 
@@ -26,6 +36,7 @@ local BaseMob = {
       if objs[n]:is_player() then
         self.state = "attack"
         self.target = objs[n]
+        self.current_backswing = 1; -- reset backswing
         --print("attacking player: " .. self.target:get_player_name())
         return
       end
@@ -49,12 +60,3 @@ local Zombie = {
 setmetatable(Zombie, { __index = BaseMob })
 
 minetest.register_entity("mobs:zombie", Zombie)
-
-
-minetest.register_on_joinplayer(function(player)
-  local pos = player:get_pos()
-
-  pos.y = pos.y + 1
-
-  minetest.add_entity(pos, "mobs:zombie")
-end)
