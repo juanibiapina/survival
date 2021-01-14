@@ -1895,7 +1895,7 @@ function mob_class:general_attack()
       or (self.specific_attack
           and not check_for("player", self.specific_attack)) then
         objs[n] = nil
---print("- pla", n)
+        --print("- pla", n)
       end
 
     -- or are we a mob?
@@ -1909,12 +1909,12 @@ function mob_class:general_attack()
       or (self.specific_attack
           and not check_for(ent.name, self.specific_attack)) then
         objs[n] = nil
---print("- mob", n, self.name, ent.name)
+        --print("- mob", n, self.name, ent.name)
       end
 
     -- remove all other entities
     else
---print(" -obj", n)
+      --print(" -obj", n)
       objs[n] = nil
     end
   end
@@ -2276,9 +2276,7 @@ function mob_class:do_states(dtime)
     end
 
     -- stand for great fall in front
-    if self.facing_fence == true
-    or self.at_cliff
-    or random(100) <= self.stand_chance then
+    if self.facing_fence == true or self.at_cliff or random(100) <= self.stand_chance then
 
       -- don't stand if mob flies and keep_flying set
       if (self.fly and not self.keep_flying)
@@ -2291,10 +2289,7 @@ function mob_class:do_states(dtime)
     else
       self:set_velocity(self.walk_velocity)
 
-      if self:flight_check()
-      and self.animation
-      and self.animation.fly_start
-      and self.animation.fly_end then
+      if self:flight_check() and self.animation and self.animation.fly_start and self.animation.fly_end then
         self:set_animation("fly")
       else
         self:set_animation("walk")
@@ -2328,14 +2323,9 @@ function mob_class:do_states(dtime)
     local dist = p and get_distance(p, s) or 500
 
     -- stop attacking if player out of range or invisible
-    if dist > self.view_range
-    or not self.attack
-    or not self.attack:get_pos()
-    or self.attack:get_hp() <= 0
-    or (self.attack:is_player()
-    and mobs.invis[ self.attack:get_player_name() ]) then
+    if dist > self.view_range or not self.attack or not self.attack:get_pos() or self.attack:get_hp() <= 0 or (self.attack:is_player() and mobs.invis[ self.attack:get_player_name() ]) then
 
---print(" ** stop attacking **", dist, self.view_range)
+      --print(" ** stop attacking **", dist, self.view_range)
 
       self.state = "stand"
       self:set_velocity(0)
@@ -2361,23 +2351,19 @@ function mob_class:do_states(dtime)
       s.y = s.y + 0.5 ; p.y = p.y + 0.5
 
       -- start timer when in reach and line of sight
-      if not self.v_start
-      and dist <= self.reach
-      and self:line_of_sight(s, p, 2) then
+      if not self.v_start and dist <= self.reach and self:line_of_sight(s, p, 2) then
 
         self.v_start = true
         self.timer = 0
         self.blinktimer = 0
         self:mob_sound(self.sounds.fuse)
 
---print("=== explosion timer started", self.explosion_timer)
+        --print("=== explosion timer started", self.explosion_timer)
 
       -- stop timer if out of reach or direct line of sight
-      elseif self.allow_fuse_reset
-      and self.v_start
-      and (dist > self.reach or not self:line_of_sight(s, p, 2)) then
+      elseif self.allow_fuse_reset and self.v_start and (dist > self.reach or not self:line_of_sight(s, p, 2)) then
 
---print("=== explosion timer stopped")
+        --print("=== explosion timer stopped")
 
         self.v_start = false
         self.timer = 0
@@ -2420,7 +2406,7 @@ function mob_class:do_states(dtime)
           self.blinkstatus = not self.blinkstatus
         end
 
---print("=== explosion timer", self.timer)
+        --print("=== explosion timer", self.timer)
 
         if self.timer > self.explosion_timer then
 
@@ -2461,10 +2447,7 @@ function mob_class:do_states(dtime)
         end
       end
 
-    elseif self.attack_type == "dogfight"
-    or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 2)
-    or (self.attack_type == "dogshoot" and dist <= self.reach
-    and self:dogswitch() == 0) then
+    elseif self.attack_type == "dogfight" or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 2) or (self.attack_type == "dogshoot" and dist <= self.reach and self:dogswitch() == 0) then
 
       if self.fly
       and dist > self.reach then
@@ -2616,10 +2599,7 @@ function mob_class:do_states(dtime)
         end
       end
 
-    elseif self.attack_type == "shoot"
-    or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 1)
-    or (self.attack_type == "dogshoot" and dist > self.reach and
-        self:dogswitch() == 0) then
+    elseif self.attack_type == "shoot" or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 1) or (self.attack_type == "dogshoot" and dist > self.reach and self:dogswitch() == 0) then
 
       p.y = p.y - .5
       s.y = s.y + .5
