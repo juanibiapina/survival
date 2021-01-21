@@ -14,6 +14,7 @@ local path = minetest.get_modpath("mobs")
 local BaseMob = {
   on_step = function(self, dtime)
     if self.state == "stand" then
+      self.object:set_velocity({x = 0, y = 0, z = 0})
       self:look_for_target()
       return
     end
@@ -31,8 +32,13 @@ local BaseMob = {
 
       -- out of attack range
       if distance > self.attack_range then
-        self:yaw_to_pos(self.target:get_pos())
-        -- walk
+        self:look_at(self.target:get_pos())
+
+        dir = vector.direction(self.object:get_pos(), self.target:get_pos())
+        dir.y = 0 -- remove vertical component otherwise the mob will fly or enter the ground
+        dir = vector.normalize(dir)
+
+        self.object:set_velocity(vector.multiply(dir, self.move_speed))
         return
       end
 
@@ -81,7 +87,7 @@ local BaseMob = {
 
   end,
 
-  yaw_to_pos = function(self, target)
+  look_at = function(self, target)
     local pos = self.object:get_pos()
     local vec = {x = target.x - pos.x, z = target.z - pos.z}
     local yaw = (math.atan(vec.z / vec.x) + math.pi / 2)
@@ -104,9 +110,10 @@ local Zombie = {
     visual_size = {x = 1, y = 1},
   },
 
+  attack_range = 2,
+  move_speed = 1,
   state = "stand",
   view_range = 5,
-  attack_range = 2,
 }
 setmetatable(Zombie, { __index = BaseMob })
 
