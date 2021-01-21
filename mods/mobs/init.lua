@@ -18,14 +18,36 @@ local BaseMob = {
       return
     end
 
+    if self.state == "approach" then
+      local selfpos = self.object:get_pos()
+      local targetpos = self.target:get_pos()
+      local distance = calc_distance(targetpos, selfpos)
+
+      -- out of view range
+      if distance > self.view_range then
+        self.state = "stand"
+        return
+      end
+
+      -- out of attack range
+      if distance > self.attack_range then
+        -- walk
+        return
+      end
+
+      -- ready to attack
+      self.state = "attack"
+      self.current_backswing = 1; -- reset backswing
+      --print("attacking player: " .. self.target:get_player_name())
+    end
+
     if self.state == "attack" then
       local selfpos = self.object:get_pos()
       local targetpos = self.target:get_pos()
       local distance = calc_distance(targetpos, selfpos)
 
-      if distance > self.view_range then
+      if distance > self.attack_range then
         self.state = "stand"
-
         return
       end
 
@@ -44,16 +66,14 @@ local BaseMob = {
 
   look_for_target = function(self)
     local pos = self.object:get_pos()
-    if not pos then return end
 
     local objs = minetest.get_objects_inside_radius(pos, self.view_range)
 
     for n = 1, #objs do
       if objs[n]:is_player() then
-        self.state = "attack"
+        self.state = "approach"
         self.target = objs[n]
-        self.current_backswing = 1; -- reset backswing
-        --print("attacking player: " .. self.target:get_player_name())
+        --print("approaching player: " .. self.target:get_player_name())
         return
       end
     end
@@ -73,6 +93,7 @@ local Zombie = {
 
   state = "stand",
   view_range = 5,
+  attack_range = 2,
 }
 setmetatable(Zombie, { __index = BaseMob })
 
