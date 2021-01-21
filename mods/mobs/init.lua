@@ -8,7 +8,6 @@ local path = minetest.get_modpath("mobs")
 local BaseMob = {
   on_step = function(self, dtime)
     if self.state == "stand" then
-      self.object:set_velocity({x = 0, y = 0, z = 0})
       self:look_for_target()
       return
     end
@@ -21,6 +20,7 @@ local BaseMob = {
       -- out of view range
       if distance > self.view_range then
         self.state = "stand"
+        self.object:set_velocity({x = 0, y = 0, z = 0})
         return
       end
 
@@ -49,6 +49,7 @@ local BaseMob = {
 
       if distance > self.attack_range then
         self.state = "stand"
+        self.object:set_velocity({x = 0, y = 0, z = 0})
         return
       end
 
