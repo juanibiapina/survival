@@ -38,6 +38,7 @@ local BaseMob = {
 
       -- ready to attack
       self.state = "attack"
+      self.object:set_velocity({x = 0, y = 0, z = 0})
       self.current_backswing = 1; -- reset backswing
       --print("attacking player: " .. self.target:get_player_name())
     end
