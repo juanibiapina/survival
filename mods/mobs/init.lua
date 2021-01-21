@@ -39,11 +39,15 @@ local BaseMob = {
       -- ready to attack
       self.state = "attack"
       self.object:set_velocity({x = 0, y = 0, z = 0})
-      self.current_backswing = 1; -- reset backswing
       --print("attacking player: " .. self.target:get_player_name())
     end
 
     if self.state == "attack" then
+      if self.current_backswing > 0 then
+        self.current_backswing = self.current_backswing - dtime;
+        return
+      end
+
       local selfpos = self.object:get_pos()
       local targetpos = self.target:get_pos()
       local distance = vector.distance(targetpos, selfpos)
@@ -54,15 +58,13 @@ local BaseMob = {
         return
       end
 
-      self.current_backswing = self.current_backswing - dtime;
-
       if self.current_backswing <= 0 then
         self.target:punch(self.object, 1.0, {
             full_punch_interval = 1.0, -- TODO: what is this?
             damage_groups = {fleshy = 1} -- TODO: what is this?
           }, nil)
 
-        self.current_backswing = 1; --reset backswing
+        self.current_backswing = self.backswing; --reset backswing
       end
     end
   end,
@@ -106,10 +108,15 @@ local Zombie = {
     visual_size = {x = 1, y = 1},
   },
 
+  -- mob attributes
   attack_range = 2,
   move_speed = 1,
   state = "stand",
   view_range = 5,
+  backswing = 1,
+
+  -- temporary values
+  current_backswing = 0,
 }
 setmetatable(Zombie, { __index = BaseMob })
 
