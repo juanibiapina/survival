@@ -31,6 +31,7 @@ local BaseMob = {
 
       -- out of attack range
       if distance > self.attack_range then
+        self:yaw_to_pos(self.target:get_pos())
         -- walk
         return
       end
@@ -78,6 +79,18 @@ local BaseMob = {
       end
     end
 
+  end,
+
+  yaw_to_pos = function(self, target)
+    local pos = self.object:get_pos()
+    local vec = {x = target.x - pos.x, z = target.z - pos.z}
+    local yaw = (math.atan(vec.z / vec.x) + math.pi / 2)
+
+    if target.x > pos.x then
+      yaw = yaw + math.pi
+    end
+
+    self.object:set_yaw(yaw)
   end,
 }
 
