@@ -12,7 +12,7 @@ local look_at = function(self, target)
   self.object:set_yaw(yaw)
 end
 
-function Approach.run(self, dtime)
+function Approach.run(self, dtime, collisioninfo)
   local selfpos = self.object:get_pos()
   local targetpos = self.target:get_pos()
   local distance = vector.distance(targetpos, selfpos)
@@ -31,7 +31,12 @@ function Approach.run(self, dtime)
     dir.y = 0 -- remove vertical component otherwise the mob will fly or enter the ground
     dir = vector.normalize(dir)
 
-    self.object:set_velocity(vector.multiply(dir, self.move_speed))
+    local desired_velocity = vector.multiply(dir, self.move_speed)
+
+    local falling_speed = self.object:get_velocity().y
+    dir.y = falling_speed
+
+    self.object:set_velocity(dir)
     return
   end
 
@@ -40,7 +45,6 @@ function Approach.run(self, dtime)
 end
 
 function Approach.enter(self, dtime)
-  --print("approaching player: " .. self.target:get_player_name())
 end
 
 function Approach.exit(self, dtime)

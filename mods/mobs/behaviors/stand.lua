@@ -1,6 +1,6 @@
 local Stand = {}
 
-function Stand.run(self, dtime)
+function Stand.run(self, dtime, collisioninfo)
   local pos = self.object:get_pos()
 
   local objs = minetest.get_objects_inside_radius(pos, self.view_range)

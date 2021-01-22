@@ -12,8 +12,12 @@ dofile(path .. "/behaviors/approach.lua")
 dofile(path .. "/behaviors/attack.lua")
 
 local BaseMob = {
-  on_step = function(self, dtime)
-    self.behavior.run(self, dtime)
+  on_activate = function(self, staticdata, dtime)
+    self.object:set_acceleration({x = 0, y = -10, z = 0})
+  end,
+
+  on_step = function(self, dtime, collisioninfo)
+    self.behavior.run(self, dtime, collisioninfo)
   end,
 }
 
@@ -25,13 +29,15 @@ local Zombie = {
     mesh = "mobs_stone_monster.b3d",
     textures = {"mobs_dirt_monster.png"},
     visual_size = {x = 1, y = 1},
+    stepheight = 1.1,
+    collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
   },
 
   -- mob attributes
   attack_range = 2,
   move_speed = 1,
   behavior = mobs.behaviors.Stand,
-  view_range = 5,
+  view_range = 10,
   backswing = 1,
 
   -- temporary values

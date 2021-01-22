@@ -1,6 +1,6 @@
 local Attack = {}
 
-function Attack.run(self, dtime)
+function Attack.run(self, dtime, collisioninfo)
   if self.current_backswing > 0 then
     self.current_backswing = self.current_backswing - dtime;
     return
