@@ -38,8 +38,8 @@ function Approach.run(self, dtime, collisioninfo)
 
   -- out of attack range
   if distance > self.attack_range then
-    look_at(self, self.target:get_pos())
-    move_towards(self, self.target:get_pos())
+    look_at(self, targetpos)
+    move_towards(self, targetpos)
     return
   end
 
