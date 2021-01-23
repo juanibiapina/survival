@@ -12,6 +12,19 @@ local look_at = function(self, target)
   self.object:set_yaw(yaw)
 end
 
+local move_towards = function(self, target_pos)
+  local dir = vector.direction(self.object:get_pos(), target_pos)
+  dir.y = 0 -- intentional movement is only horizontal
+  dir = vector.normalize(dir)
+
+  local desired_velocity = vector.multiply(dir, self.move_speed)
+
+  local falling_speed = self.object:get_velocity().y
+  dir.y = falling_speed -- keep vertical speed from falling
+
+  self.object:set_velocity(dir)
+end
+
 function Approach.run(self, dtime, collisioninfo)
   local selfpos = self.object:get_pos()
   local targetpos = self.target:get_pos()
@@ -26,17 +39,7 @@ function Approach.run(self, dtime, collisioninfo)
   -- out of attack range
   if distance > self.attack_range then
     look_at(self, self.target:get_pos())
-
-    local dir = vector.direction(self.object:get_pos(), self.target:get_pos())
-    dir.y = 0 -- remove vertical component otherwise the mob will fly or enter the ground
-    dir = vector.normalize(dir)
-
-    local desired_velocity = vector.multiply(dir, self.move_speed)
-
-    local falling_speed = self.object:get_velocity().y
-    dir.y = falling_speed
-
-    self.object:set_velocity(dir)
+    move_towards(self, self.target:get_pos())
     return
   end
 
