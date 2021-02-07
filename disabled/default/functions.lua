@@ -14,16 +14,6 @@ function default.node_sound_gravel_defaults(table)
   return table
 end
 
-function default.node_sound_wood_defaults(table)
-  table = table or {}
-  table.footstep = table.footstep or
-      {name = "default_wood_footstep", gain = 0.3}
-  table.dug = table.dug or
-      {name = "default_wood_footstep", gain = 1.0}
-  default.node_sound_defaults(table)
-  return table
-end
-
 function default.node_sound_glass_defaults(table)
   table = table or {}
   table.footstep = table.footstep or
