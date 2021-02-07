@@ -21,7 +21,7 @@ local BaseMob = {
   end,
 }
 
-local Zombie = {
+local DirtMonster = {
   initial_properties = {
     physical = true,
     is_visible = true,
@@ -60,6 +60,6 @@ local Zombie = {
   -- temporary values
   current_backswing = 0,
 }
-setmetatable(Zombie, { __index = BaseMob })
+setmetatable(DirtMonster, { __index = BaseMob })
 
-minetest.register_entity("mobs:zombie", Zombie)
+minetest.register_entity("mobs:dirt_monster", DirtMonster)
