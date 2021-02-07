@@ -28,6 +28,10 @@ minetest.register_chatcommand("biome", {
   end
 })
 
+function debug.log(message)
+  minetest.debug(message)
+end
+
 function debug.log_position(name, pos)
   minetest.debug(name .. " = {x = " .. pos.x .. ", y = " .. pos.y .. ", z = " .. pos.z .. "}")
 end
