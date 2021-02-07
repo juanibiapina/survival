@@ -40,6 +40,23 @@ local Zombie = {
   view_range = 10,
   backswing = 1,
 
+  -- animation values
+  animation = {
+    speed = 15,
+    stand = {
+      start = 0,
+      ende = 14,
+    },
+    walk = {
+      start = 15,
+      ende = 38,
+    },
+    chase = {
+      start = 40,
+      ende = 63,
+    },
+  },
+
   -- temporary values
   current_backswing = 0,
 }

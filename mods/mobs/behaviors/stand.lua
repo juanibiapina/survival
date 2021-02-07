@@ -15,6 +15,12 @@ function Stand.run(self, dtime, collisioninfo)
 end
 
 function Stand.enter(self, dtime)
+  self.object:set_animation(
+    { x = self.animation.stand.start, y = self.animation.stand.ende },
+    self.animation.speed,
+    0,
+    true
+  )
   self.object:set_velocity({x = 0, y = 0, z = 0})
 end
 

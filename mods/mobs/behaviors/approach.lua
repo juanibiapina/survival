@@ -48,6 +48,12 @@ function Approach.run(self, dtime, collisioninfo)
 end
 
 function Approach.enter(self, dtime)
+  self.object:set_animation(
+    { x = self.animation.chase.start, y = self.animation.chase.ende },
+    self.animation.speed,
+    0,
+    true
+  )
 end
 
 function Approach.exit(self, dtime)
