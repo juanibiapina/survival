@@ -35,7 +35,7 @@ minetest.register_node("basic:dirt_with_grass", {
     {name = "basic_dirt.png^basic_grass_side.png",
       tileable_vertical = false}},
   groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
-  drop = "default:dirt", -- TODO: drops, tools
+  drop = "basic:dirt",
   sounds = basic.node_sound_dirt_defaults({
     footstep = {name = "default_grass_footstep", gain = 0.25},
   }),
