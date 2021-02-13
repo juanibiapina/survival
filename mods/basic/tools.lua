@@ -15,3 +15,19 @@ minetest.register_item(":", {
   }
 })
 
+-- picks
+
+minetest.register_tool("basic:pick_wood", {
+  description = basic.S("Wooden Pickaxe"),
+  inventory_image = "basic_tool_pick_wood.png",
+  tool_capabilities = {
+    full_punch_interval = 1.2,
+    max_drop_level=0,
+    groupcaps={
+      cracky = {times={[3]=1.60}, uses=10, maxlevel=1},
+    },
+    damage_groups = {fleshy=2},
+  },
+  sound = {breaks = "default_tool_breaks"},
+  groups = {pickaxe = 1, flammable = 2}
+})

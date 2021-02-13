@@ -7,3 +7,9 @@ minetest.register_node("basic:plank", {
   groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
   sounds = basic.node_sound_wood_defaults(),
 })
+
+minetest.register_craftitem("basic:stick", {
+  description = basic.S("Stick"),
+  inventory_image = "basic_stick.png",
+  groups = {stick = 1, flammable = 2},
+})
