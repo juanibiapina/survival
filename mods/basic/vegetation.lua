@@ -1,5 +1,5 @@
 minetest.register_node("basic:leaves", {
-  description = basic.S("Apple Tree Leaves"),
+  description = basic.S("Tree Leaves"),
   drawtype = "allfaces_optional",
   waving = 1,
   tiles = {"basic_leaves.png"},
@@ -11,7 +11,7 @@ minetest.register_node("basic:leaves", {
 })
 
 minetest.register_node("basic:wood", {
-  description = basic.S("Apple Tree Wood"),
+  description = basic.S("Tree Wood"),
   tiles = {"basic_wood_top.png", "basic_wood_top.png", "basic_wood.png"},
   paramtype2 = "facedir",
   is_ground_content = false,
@@ -21,5 +21,5 @@ minetest.register_node("basic:wood", {
   on_place = minetest.rotate_node
 })
 
--- So I don't have to fix the schematics for now
+-- So I don't have to change the schematics for now
 minetest.register_alias("basic:apple", "basic:leaves")
