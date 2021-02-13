@@ -14,6 +14,7 @@ minetest.register_craft({
 
 local craft_ingreds = {
   wood = "group:wood",
+  stone = "group:stone",
 }
 
 for name, mat in pairs(craft_ingreds) do
