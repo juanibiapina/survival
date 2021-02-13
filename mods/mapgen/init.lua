@@ -7,4 +7,4 @@ local path = minetest.get_modpath("mapgen")
 
 dofile(path .. "/biomes/deciduous_forest.lua")
 
---tools.convert_schematic(path .. "/schematics/", "apple_tree")
+--debug.convert_schematic(path .. "/schematics/", "apple_tree")
