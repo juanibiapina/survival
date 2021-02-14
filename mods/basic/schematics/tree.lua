@@ -1,4 +1,4 @@
-basic.schematics.apple_tree = {
+basic.schematics.tree = {
   size = {x=7, y=8, z=7},
   yslice_prob = {
     {ypos=0, prob=254},

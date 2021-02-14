@@ -59,7 +59,7 @@ minetest.register_biome({
 --
 
 minetest.register_decoration({
-  name = "mapgen:apple_tree",
+  name = "mapgen:tree",
   deco_type = "schematic",
   place_on = {"basic:dirt_with_grass"},
   sidelen = 16,
@@ -74,7 +74,7 @@ minetest.register_decoration({
   biomes = {"deciduous_forest"},
   y_max = 31000,
   y_min = 1,
-  schematic = basic.schematics.apple_tree,
+  schematic = basic.schematics.tree,
   flags = "place_center_x, place_center_z",
   rotation = "random",
 })
