@@ -241,12 +241,6 @@ minetest.register_craftitem("default:clay_lump", {
   inventory_image = "default_clay_lump.png",
 })
 
-minetest.register_craftitem("default:coal_lump", {
-  description = S("Coal Lump"),
-  inventory_image = "default_coal_lump.png",
-  groups = {coal = 1, flammable = 1}
-})
-
 minetest.register_craftitem("default:copper_ingot", {
   description = S("Copper Ingot"),
   inventory_image = "default_copper_ingot.png"
