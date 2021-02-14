@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+file="$1"
+
+path="disabled/default/textures/${file}"
+
+newpath="${path//disabled/mods}"
+newpath="${newpath//default/basic}"
+
+echo mv "$path" "$newpath"
+mv "$path" "$newpath"
