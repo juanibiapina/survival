@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+rm -rf ~/.minetest/worlds/test
+cp -r ~/.minetest/worlds/backup ~/.minetest/worlds/test
