@@ -5,6 +5,13 @@ mobs.S = S
 
 local path = minetest.get_modpath("mobs")
 
+-- helper functions
+local get_node = function(pos, fallback)
+  local node = minetest.get_node_or_nil(pos)
+
+  return node or {name = fallback}
+end
+
 -- load behaviors
 dofile(path .. "/behaviors.lua")
 dofile(path .. "/behaviors/stand.lua")
@@ -63,3 +70,37 @@ local DirtMonster = {
 setmetatable(DirtMonster, { __index = BaseMob })
 
 minetest.register_entity("mobs:dirt_monster", DirtMonster)
+
+-- spawn dirt monsters
+minetest.register_abm({
+  label = "spawn dirt_monster",
+  nodenames = "group:soil",
+  interval = 10,
+  chance = math.max(1, 16 * 16 *16),
+  catch_up = false,
+
+  action = function(pos, node, active_object_count, active_object_count_wider)
+    -- only spawn at night
+    local tod = minetest.get_timeofday() * 24000
+    if tod > 4500 and tod < 19500 then
+      return
+    end
+
+    -- spawn above node
+    pos.y = pos.y + 1
+
+    -- check if spawn space is empty
+    local entity = minetest.registered_entities["mobs:dirt_monster"]
+    local height = math.max(1, math.ceil((entity.initial_properties.collisionbox[5] or 0.25) - (entity.initial_properties.collisionbox[2] or -0.25) - 1)) -- TODO where are these numbers coming from?
+    for n = 0, height do
+      local pos2 = {x = pos.x, y = pos.y + n, z = pos.z}
+
+      if minetest.registered_nodes[get_node(pos2, "air").name].walkable == true then
+        return
+      end
+    end
+
+    --debug.log_position("spawned at", pos)
+    minetest.add_entity(pos, "mobs:dirt_monster")
+  end
+})
