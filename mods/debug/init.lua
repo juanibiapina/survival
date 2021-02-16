@@ -6,13 +6,14 @@ end
 
 minetest.register_on_joinplayer(function(player)
     local privs = minetest.get_player_privs(player:get_player_name())
-    privs.interact = true
-    privs.zoom = true
-    privs.fly = true
     privs.fast = true
-    privs.noclip = true
-    privs.home = true
+    privs.fly = true
     privs.give = true
+    privs.home = true
+    privs.interact = true
+    privs.noclip = true
+    privs.settime = true
+    privs.zoom = true
     minetest.set_player_privs(player:get_player_name(), privs)
 end)
 
