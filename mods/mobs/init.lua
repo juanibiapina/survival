@@ -12,6 +12,11 @@ local get_node = function(pos, fallback)
   return node or {name = fallback}
 end
 
+local is_day = function()
+  local tod = minetest.get_timeofday() * 24000
+  return tod > 4500 and tod < 19500
+end
+
 -- load behaviors
 dofile(path .. "/behaviors.lua")
 dofile(path .. "/behaviors/stand.lua")
@@ -81,8 +86,7 @@ minetest.register_abm({
 
   action = function(pos, node, active_object_count, active_object_count_wider)
     -- only spawn at night
-    local tod = minetest.get_timeofday() * 24000
-    if tod > 4500 and tod < 19500 then
+    if is_day() then
       return
     end
 
