@@ -49,7 +49,7 @@ local DirtMonster = {
   attack_range = 2,
   move_speed = 1,
   behavior = mobs.behaviors.Stand,
-  view_range = 10,
+  view_range = 50,
   backswing = 1,
 
   -- animation values
