@@ -36,13 +36,18 @@ local BaseMob = {
 local DirtMonster = {
   initial_properties = {
     physical = true,
+
     is_visible = true,
     visual = "mesh",
     mesh = "mobs_stone_monster.b3d",
+    collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
+
     textures = {"mobs_dirt_monster.png"},
     visual_size = {x = 1, y = 1},
+
     stepheight = 1.1,
-    collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
+
+    makes_footstep_sound = true,
   },
 
   -- mob attributes
