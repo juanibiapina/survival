@@ -35,4 +35,13 @@ for name, mat in pairs(craft_ingreds) do
       {"", "group:stick"}
     }
   })
+
+  minetest.register_craft({
+    output = "basic:sword_".. name,
+    recipe = {
+      {mat},
+      {mat},
+      {"group:stick"}
+    }
+  })
 end
