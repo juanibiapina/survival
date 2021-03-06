@@ -17,7 +17,7 @@ local flying_cube = {
   -- mob attributes
   attack_range = 2,
   move_speed = 1,
-  behavior = mobs.behaviors.Stand,
+  behavior = mobs.behaviors.IdleFly,
   view_range = 50,
   backswing = 1,
 
@@ -43,7 +43,6 @@ local flying_cube = {
 
   -- functions
   on_activate = function(self, staticdata, dtime)
-    self.object:set_acceleration({x = 0, y = -10, z = 0})
   end,
 
   on_step = function(self, dtime, collisioninfo)
