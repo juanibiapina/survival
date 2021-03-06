@@ -38,9 +38,6 @@ local flying_cube = {
     },
   },
 
-  -- temporary values
-  current_backswing = 0,
-
   -- functions
   on_activate = function(self, staticdata, dtime)
   end,

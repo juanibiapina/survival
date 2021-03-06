@@ -40,7 +40,7 @@ local dirt_monster = {
   },
 
   -- temporary values
-  current_backswing = 0,
+  current_backswing = 0, -- TODO: for attack behavior
 
   -- functions
   on_activate = function(self, staticdata, dtime)
