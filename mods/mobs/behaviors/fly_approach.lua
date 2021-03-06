@@ -37,7 +37,7 @@ function FlyApproach.run(self, dtime, collisioninfo)
   end
 
   -- ready to attack
-  --mobs.behaviors.activate(self, mobs.behaviors.FlyAttack, dtime)
+  mobs.behaviors.activate(self, mobs.behaviors.FlyAttack, dtime)
 end
 
 function FlyApproach.enter(self, dtime)
