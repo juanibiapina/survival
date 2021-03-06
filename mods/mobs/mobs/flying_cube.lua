@@ -11,7 +11,7 @@ local flying_cube = {
 
     stepheight = 1.1,
 
-    makes_footstep_sound = true, -- TODO: change to false
+    makes_footstep_sound = false,
   },
 
   -- mob attributes
