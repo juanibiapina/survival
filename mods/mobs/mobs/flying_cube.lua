@@ -16,7 +16,9 @@ local flying_cube = {
 
   -- mob attributes
   behavior = mobs.behaviors.IdleFly,
-  move_speed = 3,
+  attack_range = 2,
+  move_speed = 5,
+  view_range = 50,
 
   -- functions
   on_activate = function(self, staticdata, dtime)

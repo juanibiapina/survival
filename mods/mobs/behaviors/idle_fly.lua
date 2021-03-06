@@ -15,10 +15,19 @@ function IdleFly.run(self, dtime, collisioninfo)
 
   -- set velocity
   self.object:set_velocity(vector.multiply(dir, self.move_speed))
+
+  -- check for player in view
+  local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
+  for n = 1, #objs do
+    if objs[n]:is_player() then -- first player, not necessarily closer
+      self.target = objs[n]
+      mobs.behaviors.activate(self, mobs.behaviors.FlyApproach, dtime)
+      return
+    end
+  end
 end
 
 function IdleFly.enter(self, dtime)
-  self.object:set_velocity({x = 0, y = 0, z = 0})
 end
 
 function IdleFly.exit(self, dtime)

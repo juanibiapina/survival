@@ -17,4 +17,5 @@ dofile(path .. "/mobs/dirt_monster.lua")
 
 -- flying cube
 dofile(path .. "/behaviors/idle_fly.lua")
+dofile(path .. "/behaviors/fly_approach.lua")
 dofile(path .. "/mobs/flying_cube.lua")
