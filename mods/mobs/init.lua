@@ -3,21 +3,22 @@ local S = minetest.get_translator("mobs")
 mobs = {}
 mobs.S = S
 
-local path = minetest.get_modpath("mobs")
+mobs.helpers = {}
 
 -- helper functions
-local get_node = function(pos, fallback)
+function mobs.helpers.get_node(pos, fallback)
   local node = minetest.get_node_or_nil(pos)
 
   return node or {name = fallback}
 end
 
-local is_day = function()
+function mobs.helpers.is_day()
   local tod = minetest.get_timeofday() * 24000
   return tod > 4500 and tod < 19500
 end
 
 -- load behaviors
+local path = minetest.get_modpath("mobs")
 dofile(path .. "/behaviors.lua")
 dofile(path .. "/behaviors/stand.lua")
 dofile(path .. "/behaviors/approach.lua")
@@ -91,7 +92,7 @@ minetest.register_abm({
 
   action = function(pos, node, active_object_count, active_object_count_wider)
     -- only spawn at night
-    if is_day() then
+    if mobs.helpers.is_day() then
       return
     end
 
@@ -104,7 +105,7 @@ minetest.register_abm({
     for n = 0, height do
       local pos2 = {x = pos.x, y = pos.y + n, z = pos.z}
 
-      if minetest.registered_nodes[get_node(pos2, "air").name].walkable == true then
+      if minetest.registered_nodes[mobs.helpers.get_node(pos2, "air").name].walkable == true then
         return
       end
     end
@@ -172,7 +173,7 @@ minetest.register_abm({
 
   action = function(pos, node, active_object_count, active_object_count_wider)
     -- only spawn at night
-    if is_day() then
+    if mobs.helpers.is_day() then
       return
     end
 
@@ -182,7 +183,7 @@ minetest.register_abm({
     for n = 0, height do
       local pos2 = {x = pos.x, y = pos.y + n, z = pos.z}
 
-      if minetest.registered_nodes[get_node(pos2, "air").name].walkable == true then
+      if minetest.registered_nodes[mobs.helpers.get_node(pos2, "air").name].walkable == true then
         return
       end
     end
