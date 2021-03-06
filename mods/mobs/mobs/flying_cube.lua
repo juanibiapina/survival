@@ -21,23 +21,6 @@ local flying_cube = {
   view_range = 50,
   backswing = 1,
 
-  -- animation values
-  animation = {
-    speed = 15,
-    stand = {
-      start = 0,
-      ende = 14,
-    },
-    walk = {
-      start = 15,
-      ende = 38,
-    },
-    chase = {
-      start = 40,
-      ende = 63,
-    },
-  },
-
   -- functions
   on_activate = function(self, staticdata, dtime)
   end,
