@@ -16,11 +16,11 @@ local dirt_monster = {
   },
 
   -- mob attributes
-  attack_range = 2,
-  move_speed = 1,
   behavior = mobs.behaviors.Stand,
-  view_range = 50,
+  attack_range = 2,
   backswing = 1,
+  move_speed = 1,
+  view_range = 50,
 
   -- animation values
   animation = {
