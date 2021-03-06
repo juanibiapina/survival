@@ -11,7 +11,7 @@ function FlyAttack.run(self, dtime, collisioninfo)
   local distance = vector.distance(targetpos, selfpos)
 
   if distance > self.attack_range then
-    mobs.behaviors.activate(self, mobs.behaviors.IdleFly, dtime)
+    mobs.behaviors.activate(self, mobs.behaviors.FlyIdle, dtime)
     return
   end
 

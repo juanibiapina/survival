@@ -15,7 +15,7 @@ local flying_cube = {
   },
 
   -- mob attributes
-  behavior = mobs.behaviors.IdleFly,
+  behavior = mobs.behaviors.FlyIdle,
   attack_range = 2,
   backswing = 1,
   move_speed = 5,

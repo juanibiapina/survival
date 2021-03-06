@@ -25,7 +25,7 @@ function FlyApproach.run(self, dtime, collisioninfo)
 
   -- out of view range
   if distance > self.view_range then
-    mobs.behaviors.activate(self, mobs.behaviors.IdleFly, dtime)
+    mobs.behaviors.activate(self, mobs.behaviors.FlyIdle, dtime)
     return
   end
 

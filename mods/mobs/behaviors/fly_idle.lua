@@ -1,6 +1,6 @@
-local IdleFly = {}
+local FlyIdle = {}
 
-function IdleFly.run(self, dtime, collisioninfo)
+function FlyIdle.run(self, dtime, collisioninfo)
   -- get direction in radians
   local yaw = self.object:get_yaw()
 
@@ -27,10 +27,10 @@ function IdleFly.run(self, dtime, collisioninfo)
   end
 end
 
-function IdleFly.enter(self, dtime)
+function FlyIdle.enter(self, dtime)
 end
 
-function IdleFly.exit(self, dtime)
+function FlyIdle.exit(self, dtime)
 end
 
-mobs.behaviors.IdleFly = IdleFly
+mobs.behaviors.FlyIdle = FlyIdle
