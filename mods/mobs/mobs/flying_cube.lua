@@ -1,5 +1,4 @@
--- flying cubes
-local FlyingCube = {
+local flying_cube = {
   initial_properties = {
     physical = true,
 
@@ -12,7 +11,7 @@ local FlyingCube = {
 
     stepheight = 1.1,
 
-    makes_footstep_sound = true,
+    makes_footstep_sound = true, -- TODO: change to false
   },
 
   -- mob attributes
@@ -41,10 +40,16 @@ local FlyingCube = {
 
   -- temporary values
   current_backswing = 0,
-}
-setmetatable(FlyingCube, { __index = mobs.BaseMob })
 
-minetest.register_entity("mobs:flying_cube", FlyingCube)
+  -- functions
+  on_activate = function(self, staticdata, dtime)
+    self.object:set_acceleration({x = 0, y = -10, z = 0})
+  end,
+
+  on_step = function(self, dtime, collisioninfo)
+    self.behavior.run(self, dtime, collisioninfo)
+  end,
+}
 
 -- spawn flying cubes
 minetest.register_abm({
@@ -75,3 +80,5 @@ minetest.register_abm({
     minetest.add_entity(pos, "mobs:flying_cube")
   end
 })
+
+minetest.register_entity("mobs:flying_cube", flying_cube)

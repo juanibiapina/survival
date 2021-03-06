@@ -1,4 +1,4 @@
-local DirtMonster = {
+local dirt_monster = {
   initial_properties = {
     physical = true,
 
@@ -41,10 +41,18 @@ local DirtMonster = {
 
   -- temporary values
   current_backswing = 0,
-}
-setmetatable(DirtMonster, { __index = mobs.BaseMob })
 
-minetest.register_entity("mobs:dirt_monster", DirtMonster)
+  -- functions
+  on_activate = function(self, staticdata, dtime)
+    self.object:set_acceleration({x = 0, y = -10, z = 0})
+  end,
+
+  on_step = function(self, dtime, collisioninfo)
+    self.behavior.run(self, dtime, collisioninfo)
+  end,
+}
+
+minetest.register_entity("mobs:dirt_monster", dirt_monster)
 
 -- spawn dirt monsters
 minetest.register_abm({
@@ -78,3 +86,5 @@ minetest.register_abm({
     minetest.add_entity(pos, "mobs:dirt_monster")
   end
 })
+
+minetest.register_entity("mobs:dirt_monster", dirt_monster)

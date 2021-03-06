@@ -10,4 +10,3 @@ function mobs.helpers.is_day()
   local tod = minetest.get_timeofday() * 24000
   return tod > 4500 and tod < 19500
 end
-
